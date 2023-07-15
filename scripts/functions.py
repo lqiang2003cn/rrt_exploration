@@ -19,7 +19,7 @@ class robot:
     def __init__(self, name):
         self.assigned_point = []
         self.name = name
-        self.global_frame = rospy.get_param('~global_frame', '/map')
+        self.global_frame = rospy.get_param('~global_frame', 'map')
         self.robot_frame = rospy.get_param('~robot_frame', 'base_footprint')
         self.plan_service = rospy.get_param(
             '~plan_service', '/move_base/NavfnROS/make_plan')
