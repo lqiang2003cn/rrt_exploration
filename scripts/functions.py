@@ -20,9 +20,9 @@ class robot:
         self.assigned_point = []
         self.name = name
         self.global_frame = rospy.get_param('~global_frame', '/map')
-        self.robot_frame = rospy.get_param('~robot_frame', 'base_link')
+        self.robot_frame = rospy.get_param('~robot_frame', 'base_footprint')
         self.plan_service = rospy.get_param(
-            '~plan_service', '/move_base_node/NavfnROS/make_plan')
+            '~plan_service', '/move_base/NavfnROS/make_plan')
         self.listener = tf.TransformListener()
         self.listener.waitForTransform(
             self.global_frame, self.name+'/'+self.robot_frame, rospy.Time(0), rospy.Duration(10.0))
@@ -40,7 +40,7 @@ class robot:
         self.client = actionlib.SimpleActionClient(
             self.name+'/move_base', MoveBaseAction)
         self.client.wait_for_server()
-        robot.goal.target_pose.header.frame_id = self.global_frame
+        robot.goal.target_pose.header.frame_id = "map"
         robot.goal.target_pose.header.stamp = rospy.Time.now()
 
         rospy.wait_for_service(self.name+self.plan_service)
