@@ -170,7 +170,6 @@ int main(int argc, char **argv) {
     points.points.clear();
     pub.publish(points);
 
-
     std::vector<float> frontiers;
     int i = 0;
     float xr, yr;
