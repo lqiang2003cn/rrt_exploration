@@ -86,6 +86,8 @@ int main(int argc, char **argv) {
         ros::Duration(0.1).sleep();
     }
 
+
+
 //visualizations  points and lines..
     points.header.frame_id = mapData.header.frame_id;
     line.header.frame_id = mapData.header.frame_id;
@@ -116,7 +118,7 @@ int main(int argc, char **argv) {
     points.color.r = 255.0 / 255.0;
     points.color.g = 0.0 / 255.0;
     points.color.b = 0.0 / 255.0;
-    points.color.a = 1.0;
+    points.color.a = 0.3;
     line.color.a = 1.0;
     points.lifetime = ros::Duration();
     line.lifetime = ros::Duration();
@@ -224,7 +226,7 @@ int main(int argc, char **argv) {
             while (temp == 0) {
                 try {
                     temp = 1;
-                    listener.lookupTransform("map", base_frame_topic, ros::Time(0), transform);
+                    listener.lookupTransform(map_topic, base_frame_topic, ros::Time(0), transform);
                 }
                 catch (tf::TransformException ex) {
                     temp = 0;
