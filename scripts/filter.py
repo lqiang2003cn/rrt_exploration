@@ -63,7 +63,7 @@ def node():
     rateHz = rospy.get_param('~rate', 100)
     global_costmap_topic = rospy.get_param(
         '~global_costmap_topic', '/move_base/global_costmap/costmap')
-    robot_frame = rospy.get_param('~robot_frame', 'base_link')
+    robot_frame = rospy.get_param('~robot_frame', 'base_footprint')
 
     litraIndx = len(namespace)
     rate = rospy.Rate(rateHz)
