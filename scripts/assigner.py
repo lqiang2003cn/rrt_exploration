@@ -71,7 +71,7 @@ def node():
     elif len(namespace) == 0:
         robots.append(robot(namespace))
     for i in range(0, n_robots):
-        robots[i].sendGoal(robots[i].getPosition())
+        robots[i].send_goal(robots[i].getPosition())
     # -------------------------------------------------------------------------
     # ---------------------     Main   Loop     -------------------------------
     # -------------------------------------------------------------------------
@@ -139,7 +139,7 @@ def node():
         # -------------------------------------------------------------------------
         if len(id_record) > 0:
             winner_id = revenue_record.index(max(revenue_record))
-            robots[id_record[winner_id]].sendGoal(centroid_record[winner_id])
+            robots[id_record[winner_id]].send_goal(centroid_record[winner_id])
             rospy.loginfo(namespace + str(namespace_init_count + id_record[winner_id]) + "  assigned to  " + str(
                 centroid_record[winner_id]))
             rospy.sleep(delay_after_assignement)
