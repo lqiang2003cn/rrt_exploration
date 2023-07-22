@@ -9,7 +9,7 @@ from numpy import array
 from numpy.linalg import norm
 from rrt_exploration.msg import PointArray
 
-from functions import robot, informationGain, discount
+from functions import robot, information_gain, discount
 
 # Subscribers' callbacks------------------------------
 mapData = OccupancyGrid()
@@ -81,7 +81,7 @@ def node():
         # Get information gain for each frontier point
         infoGain = []
         for ip in range(0, len(centroids)):
-            infoGain.append(informationGain(mapData, [centroids[ip][0], centroids[ip][1]], info_radius))
+            infoGain.append(information_gain(mapData, [centroids[ip][0], centroids[ip][1]], info_radius))
         # -------------------------------------------------------------------------
         # get number of available/busy robots
         na = []  # available robots
@@ -124,8 +124,8 @@ def node():
                         information_gain *= hysteresis_gain
 
                     if (norm(centroids[ip] - robots[ir].assigned_point)) < hysteresis_radius:
-                        information_gain = informationGain(mapData, [centroids[ip][0], centroids[ip][1]],
-                                                           info_radius) * hysteresis_gain
+                        information_gain = information_gain(mapData, [centroids[ip][0], centroids[ip][1]],
+                                                            info_radius) * hysteresis_gain
 
                     revenue = information_gain * info_multiplier - cost
                     revenue_record.append(revenue)

@@ -9,7 +9,7 @@ from nav_msgs.msg import OccupancyGrid
 from geometry_msgs.msg import PointStamped
 import tf
 from numpy import array, vstack, delete
-from functions import gridValue, informationGain
+from functions import gridValue, information_gain
 from sklearn.cluster import MeanShift
 from rrt_exploration.msg import PointArray
 
@@ -212,7 +212,7 @@ def node():
                     globalmaps[i].header.frame_id, temppoint)
                 x = array([transformedPoint.point.x, transformedPoint.point.y])
                 cond = (gridValue(globalmaps[i], x) > threshold) or cond
-            if cond or (informationGain(mapData, [centroids[z][0], centroids[z][1]], info_radius * 0.5)) < 0.2:
+            if cond or (information_gain(mapData, [centroids[z][0], centroids[z][1]], info_radius * 0.5)) < 0.2:
                 centroids = delete(centroids, z, axis=0)
                 z = z-1
             z += 1
